@@ -1,0 +1,43 @@
+{% extends "home/base.html" %}
+{% load mytags %}
+<html>
+<head>
+
+</head>
+
+<body>
+{% block latest %}
+<div class="section-inner">
+                        <h5 class="heading"><a href="{% url 'bloglist'%}">返回主页</a> &nbsp;{{name}}</h5>
+                        <div class="content">
+                            {% for i in contacts %}
+                            <div class="item row">
+                                <a class="col-md-3 col-sm-3 col-xs-12" href="{% url 'blogshow'  i.topic_subclass i.id i.caption %}" style="text-align:center">
+                                    {% if i.topicimg %}
+                                    <img  class="img-responsive project-image" src="/img/{{i.topicimg}}"  />
+                                    {% else %}
+                                	<img  class="img-responsive project-image" src="/img/topic_img/default.jpg"  />
+                                    {% endif %}
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title" style="text-align:center"><a href="{% url 'blogshow'  i.topic_subclass i.id i.caption %}" >{{i.caption}}</a></h3>
+                                    <p class="summary" style="text-align:center">{{i.publish_time|date:"Y-m-d H:s"}}</p>
+                                    <p>{{i.content|truncatehanzi:"220"|safe}}</p>
+                                    <p style="color:#96A1AD">{{i.author}}&nbsp;&nbsp;{{i.publish_time|date:"Y-m-d H:s"}}&nbsp;&nbsp;<i class="fa fa-eye" ></i>&nbsp;&nbsp;{{i.views}}&nbsp;&nbsp;
+                                </div><!--//desc-->
+                            </div><!--//item-->
+                            {% endfor %}
+                            <hr class="divider" />
+                            {% include "home/page.html"%}
+
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+
+
+{% endblock %}
+
+</body>
+</html>
+
+
+

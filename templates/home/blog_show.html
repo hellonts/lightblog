@@ -1,0 +1,74 @@
+{% extends "home/base.html" %}
+
+<html>
+
+<head>
+{% block title %} {{mess.caption}}{% endblock %}
+</head>
+
+
+
+<body>
+{% block latest %}
+
+                    <div class="section-inner">
+                        <h4 class="heading"><a href="{% url 'bloglist'%}">返回主页</a></h4>
+                        <div class="content">
+
+                            <div class="item featured text-center">
+                                <h2 class="title" style="text-align:center">{{mess.caption}}</h2>
+                                 <br>
+                                <h5 class="level-title" style="text-align:center;color:#C1C1C2;">{{mess.author}}&nbsp;&nbsp; |&nbsp;&nbsp;{{mess.publish_time|date:"Y-m-d H:s"}}</h5>
+								<br>
+                               
+                                <h5 class="level-title"style="text-align:left;color:#C1C1C2;">{% for i in mess.tags.all %} <span class="label label-warning">{{ i}}</span> {% endfor %}</h5>
+								<br>
+								<h5 class="level-title"style="text-align:left;color:#C1C1C2;">阅读:{{mess.views}}</h5>
+								<br>
+								<hr>
+                                
+                                 
+
+                                <div class="desc text-left">
+                                    <!--pre style="font-size:14px" class="language-python line-numbers"></pre-->
+                                  {{mess.content|safe}} 
+                                </div><!--//desc-->
+
+                            </div><!--//item-->
+
+                            <hr class="divider" />
+
+							<!-- 多说评论框 start -->
+							<div class="ds-thread" data-thread-key="{{mess.id}}" data-title="{{mess.caption}}" data-url="" data-image="/img/{{mess.topicimg}}"></div>
+							<!-- 多说评论框 end -->
+							<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+							<script type="text/javascript">
+								var duoshuoQuery = {short_name:"pythonkf"};
+								(function() {
+									var ds = document.createElement('script');
+									ds.type = 'text/javascript';ds.async = true;
+									ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+									ds.charset = 'UTF-8';
+									(document.getElementsByTagName('head')[0] 
+									 || document.getElementsByTagName('body')[0]).appendChild(ds);
+								})();
+								</script>
+							<!-- 多说公共JS代码 end -->
+
+                        <!-- UY BEGIN -->
+						<!--div id="uyan_frame" style="text-align:center" ></div>
+						<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2082836"></script-->
+						<!-- UY END -->
+
+
+
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+
+
+{% endblock %}
+</body>
+</html>
+
+
+

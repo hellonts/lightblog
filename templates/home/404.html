@@ -1,0 +1,14 @@
+<html>
+<body>
+<div id="aa"></div>
+<script>
+function clock(){i=i-1
+document.getElementById("aa").innerHTML="将在"+i+"秒后自动返回首页!";
+if(i>0)setTimeout("clock();",1000);
+else document.location.href='http://hellonts.sinaapp.com';}
+var i=3;//时间:秒
+clock();
+</script>
+    <h2>此页不存在</h2>
+</body>
+</html>

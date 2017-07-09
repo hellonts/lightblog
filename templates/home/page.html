@@ -1,0 +1,7 @@
+
+              <ul class="pagination">
+                <li > {% if contacts.has_previous %}<button type="button" class="btn btn-default btn-sm" onclick="javascript:window.location.href='?page={{ contacts.previous_page_number }}'">上一页</button>{% endif %}</li>
+                <li class="more-link"><button type="button" class="btn btn-default btn-sm">第 {{ contacts.number }} 页<span class="sr-only">(current)</span></button></li>
+                <li class="more-link"><button type="button" class="btn btn-default btn-sm">共 {{ contacts.paginator.num_pages }} 页</button></li>
+                <li > {% if contacts.has_next %}<button type="button" class="btn btn-default btn-sm" onclick="javascript:window.location.href='?page={{ contacts.next_page_number }}'">下一页</button>{% endif %}</li>
+              </ul>

@@ -1,0 +1,74 @@
+{% extends "home/base.html" %}
+{% load mytags %}
+
+<html>
+<head>
+
+</head>
+
+<body>
+{% block latest %}
+<div class="section-inner">
+                        <h2 class="heading">推荐</h2>
+                        <div class="content">
+
+                            <div class="item featured text-center" style="text-align:center">
+
+                                <h3 class="title"><a href="{% url 'blogshow'  digest.topic_subclass digest.id digest.caption %}" >{{digest.caption}}</a></h3>
+                                <p class="summary">{{digest.author}}&nbsp;&nbsp;{{digest.publish_time|date:"Y-m-d H:s"}}</p>
+                                <div class="featured-image"  >
+
+                                    <a href="{% url 'blogshow'  digest.topic_subclass digest.id digest.caption %}" style="text-align:center">
+                                   {% if digest.topicimg %}
+                                    <img class="img-responsive project-image"   style="display:block;width:500px;height:150px;margin:10px auto;" src="/img/{{digest.topicimg}}"  />
+                                    {% else %}
+                                	<img class="img-responsive project-image"   src="img/default.jpg"  />
+                                    {% endif %}
+                                    </a>
+                                    <div class="ribbon">
+                                        <div class="text">New</div>
+                                        </div>
+                                    </div>
+
+                                <div class="desc text-left">
+                                    <p>{{digest.content|safe|truncatewords_html:10}} </p>
+
+                                </div><!--//desc-->
+                                <a class="btn btn-cta-secondary" href="{% url 'blogshow'  digest.topic_subclass digest.id digest.caption %}" ><i class="fa fa-thumbs-o-up"></i> 去阅读</a>
+                            </div><!--//item-->
+
+                            <hr class="divider" />
+                            {% for i in contacts %}
+                            <div class="item row">
+                                <a class="col-md-3 col-sm-3 col-xs-12" href="{% url 'blogshow'  i.topic_subclass i.id i.caption %}" style="text-align:center">
+                                    {% if i.topicimg %}
+                                    
+                                    <img  class="scrollLoading " xsrc="/img/{{i.topicimg}}" src="/img/topic_img/default.jpg" width="100%" height="100%" />
+                                    {% else %}
+                                    
+                                	<img  class="scrollLoading " xsrc="/img/topic_img/default.jpg"  src="/img/topic_img/default.jpg" width="100%" height="100%" />
+                                    {% endif %}
+                                </a>
+                                <div class="desc col-md-9 col-sm-9 col-xs-12">
+                                    <h3 class="title" style="text-align:center"><a href="{% url 'blogshow'  i.topic_subclass i.id i.caption %}" >{{i.caption}}</a></h3>
+                                    <p>{{i.content|truncatehanzi:"220"|safe}}</p>
+                                    <p style="color:#96A1AD">{{i.author}}&nbsp;&nbsp;{{i.publish_time|date:"Y-m-d H:s"}}&nbsp;&nbsp;<i class="fa fa-eye" ></i>&nbsp;&nbsp<span>{{i.views}}</span>&nbsp;&nbsp;
+                                </div><!--//desc-->
+                            </div><!--//item-->
+                            <hr class="divider">
+                            {% endfor %}
+
+                            {% include "home/page.html"%}
+
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+
+
+{% endblock %}
+
+</body>
+  
+</html>
+
+
+
